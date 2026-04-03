@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Camara</string>
+    <string name="app_name">Camara Cidadâ</string>
+    <string name="loading_message">Carregando Camara Cidadâ...</string>
 </resources>

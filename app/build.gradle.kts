@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.services)
 }
 
 android {
@@ -40,10 +39,12 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    
-    // Firebase BOM e FCM
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.messaging.ktx)
+
+    // SQLite (Room)
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    // Para usar Kotlin KSP/Kapt com Room, precisaríamos adicionar os plugins correspondentes.
+    // Por enquanto, adicionamos apenas o runtime básico.
 
     // Glide para imagens de loading
     implementation(libs.glide)

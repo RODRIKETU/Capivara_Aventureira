@@ -1,33 +1,25 @@
 package com.example.camara
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.activity.enableEdgeToEdge
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import android.webkit.*
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.camara.databinding.ActivityMainBinding
-import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val PREFS_NAME = "AportecPrefs"
-    private val FIRST_ACCESS_KEY = "isFirstAccess"
     private val BASE_URL = "https://dev.aporttec.com"
 
     // Lista de imagens de loading (substitua pelos seus drawables)
@@ -39,74 +31,30 @@ class MainActivity : AppCompatActivity() {
         R.drawable.loading5
     )
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            Log.d("FCM", "Permissão de notificação concedida")
-        }
-        // Após a permissão, inicia o carregamento normal
-        startAppLogic()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
         setupWebView()
         setupBackButton()
-        checkFirstAccess()
+        startAppLogic()
 
         // Botão de tentar novamente em caso de erro
         binding.btnRetry.setOnClickListener {
             startAppLogic()
         }
 
-        // Verifica se veio de uma notificação com URL
+        // Verifica se veio de uma URL externa
         intent.getStringExtra("url")?.let {
-            Log.d("FCM", "Abrindo via notificação com URL: $it")
             binding.webView.loadUrl(it)
-        }
-    }
-
-    private fun checkFirstAccess() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val isFirstAccess = prefs.getBoolean(FIRST_ACCESS_KEY, true)
-
-        if (isFirstAccess) {
-            showWelcomeDialog()
-            prefs.edit().putBoolean(FIRST_ACCESS_KEY, false).apply()
-        } else {
-            startAppLogic()
-        }
-    }
-
-    private fun showWelcomeDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Bem-vindo ao Aportec!")
-            .setMessage("Gostaria de receber notificações importantes, promoções e atualizações do Aportec?\nÉ rápido e você pode mudar depois nas configurações.")
-            .setPositiveButton("Sim, quero receber") { _, _ ->
-                askNotificationPermission()
-            }
-            .setNegativeButton("Agora não") { _, _ ->
-                startAppLogic()
-            }
-            .setCancelable(false)
-            .show()
-    }
-
-    private fun askNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-                PackageManager.PERMISSION_GRANTED
-            ) {
-                startAppLogic()
-            } else {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-            }
-        } else {
-            startAppLogic()
         }
     }
 
@@ -162,7 +110,6 @@ class MainActivity : AppCompatActivity() {
         binding.webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                // Não esconder o loading aqui para dar tempo de renderizar
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
@@ -181,15 +128,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.webView.webChromeClient = object : WebChromeClient() {}
-        
-        // Log do Token FCM
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("FCM", "Falha ao obter token", task.exception)
-                return@addOnCompleteListener
-            }
-            Log.d("FCM", "Token atual: ${task.result}")
-        }
     }
 
     private fun setupBackButton() {
