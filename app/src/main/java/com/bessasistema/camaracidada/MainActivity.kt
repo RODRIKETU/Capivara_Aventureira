@@ -1,4 +1,4 @@
-package com.example.camara
+package com.bessasistema.camaracidada
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,7 +14,7 @@ import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.camara.databinding.ActivityMainBinding
+import com.bessasistema.camaracidada.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
