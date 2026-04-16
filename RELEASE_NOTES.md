@@ -1,5 +1,16 @@
 # Notas de Versão - Camara Cidadã
 
+## Versão 1.1.2 (Atualização de Identidade)
+
+Esta versão traz a nova identidade visual consolidada do aplicativo.
+
+### O que há de novo:
+
+1.  **Novo Ícone Oficial**: Atualizamos o ícone do aplicativo para a versão final de 512x512, garantindo melhor visibilidade e nitidez em todos os modelos de dispositivos Android.
+2.  **Incremento de Versão**: Atualizado para v1.1.2 para refletir as mudanças de ativos e preparativos finais para a Play Store.
+3.  **Consolidação de Identidade**: Todas as referências internas agora apontam corretamente para a nova marca.
+
+---
 ## Versão 1.0.1 (Lançamento Inicial)
 
 Bem-vindos ao lançamento oficial do **Camara Cidadã**! Esta versão marca o início da nossa jornada para oferecer uma experiência digital fluida e integrada para todos os usuários.
