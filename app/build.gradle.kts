@@ -11,10 +11,12 @@ android {
 
     defaultConfig {
         applicationId = "com.bessasistema.camaracidada"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.1.2"
+        versionCode = 4
+        versionName = "1.1.3"
+
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,5 +1,16 @@
 # Notas de Versão - Camara Cidadã
 
+## Versão 1.1.3 (Compatibilidade Expandida)
+
+Nesta atualização, focamos em tornar o aplicativo acessível para o maior número possível de cidadãos, incluindo aqueles com dispositivos mais antigos.
+
+### O que há de novo:
+
+1.  **Compatibilidade Ampliada**: Reduzimos o requisito mínimo para o **Android 5.0 (Lollipop)** (API 21). Agora o app funciona em aproximadamente 99% dos dispositivos Android ativos.
+2.  **Suporte a MultiDex**: Implementado para garantir estabilidade em versões mais antigas do sistema operacional.
+3.  **Melhorias de Performance**: Otimizações internas para garantir que o WebView carregue de forma fluida mesmo em hardware com menos processamento.
+
+---
 ## Versão 1.1.2 (Atualização de Identidade)
 
 Esta versão traz a nova identidade visual consolidada do aplicativo.
