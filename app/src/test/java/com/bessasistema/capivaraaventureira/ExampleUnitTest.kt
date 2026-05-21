@@ -1,4 +1,4 @@
-package com.example.camara
+package com.bessasistema.capivaraaventureira
 
 import org.junit.Test
 

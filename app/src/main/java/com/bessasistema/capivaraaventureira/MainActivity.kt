@@ -1,4 +1,4 @@
-package com.bessasistema.camaracidada
+package com.bessasistema.capivaraaventureira
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,13 +14,13 @@ import android.webkit.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bessasistema.camaracidada.databinding.ActivityMainBinding
+import com.bessasistema.capivaraaventureira.databinding.ActivityMainBinding
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val BASE_URL = "https://dev.aporttec.com"
+    private val BASE_URL = "https://capivara.aporttec.com"
 
     // Lista de imagens de loading (substitua pelos seus drawables)
     private val loadingImages = listOf(
@@ -78,21 +78,31 @@ class MainActivity : AppCompatActivity() {
     private fun startLoadingAnimation() {
         // Alterna imagens aleatoriamente usando Glide para transições suaves
         val timer = Timer()
+        val random = Random()
+        var lastIndex = -1
+
         timer.schedule(object : TimerTask() {
-            var count = 0
             override fun run() {
                 runOnUiThread {
                     if (binding.layoutLoading.visibility == View.VISIBLE) {
+                        var nextIndex: Int
+                        // Garante que a próxima imagem seja diferente da atual para um efeito melhor
+                        do {
+                            nextIndex = random.nextInt(loadingImages.size)
+                        } while (nextIndex == lastIndex && loadingImages.size > 1)
+                        
+                        lastIndex = nextIndex
+
                         Glide.with(this@MainActivity)
-                            .load(loadingImages[count % loadingImages.size])
+                            .load(loadingImages[nextIndex])
+                            .centerInside() // Garante que a imagem se ajuste bem
                             .into(binding.imgLoading)
-                        count++
                     } else {
                         timer.cancel()
                     }
                 }
             }
-        }, 0, 1500) // Troca a cada 1.5 segundos
+        }, 0, 2000) // Aumentei levemente o tempo para 2 segundos para dar tempo de apreciar a imagem
     }
 
     @SuppressLint("SetJavaScriptEnabled")

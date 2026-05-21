@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.bessasistema.camaracidada"
+    namespace = "com.bessasistema.capivaraaventureira"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.bessasistema.camaracidada"
+        applicationId = "com.bessasistema.capivaraaventureira"
         minSdk = 21
         targetSdk = 36
         versionCode = 4
@@ -41,6 +41,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+            signingConfig = signingConfigs.getByName("release")
+        }
         release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true

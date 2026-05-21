@@ -1,5 +1,16 @@
-# Notas de Versão - Camara Cidadã
+# Notas de Versão - Capivara Aventureira
 
+## Versão 1.1.4 (Renomeação e Novo Endereço)
+
+Nesta atualização, o aplicativo foi renomeado e apontado para seu novo endereço oficial.
+
+### O que há de novo:
+
+1.  **Nova Identidade**: O aplicativo agora se chama **Capivara Aventureira**.
+2.  **Novo Endereço**: O aplicativo agora aponta para `https://capivara.aporttec.com`.
+3.  **Atualização de Pacote**: O identificador do aplicativo foi alterado para `com.bessasistema.capivaraaventureira`.
+
+---
 ## Versão 1.1.3 (Compatibilidade Expandida)
 
 Nesta atualização, focamos em tornar o aplicativo acessível para o maior número possível de cidadãos, incluindo aqueles com dispositivos mais antigos.
@@ -24,11 +35,11 @@ Esta versão traz a nova identidade visual consolidada do aplicativo.
 ---
 ## Versão 1.0.1 (Lançamento Inicial)
 
-Bem-vindos ao lançamento oficial do **Camara Cidadã**! Esta versão marca o início da nossa jornada para oferecer uma experiência digital fluida e integrada para todos os usuários.
+Bem-vindos ao lançamento oficial do **Capivara Aventureira**! Esta versão marca o início da nossa jornada para oferecer uma experiência digital fluida e integrada para todos os usuários.
 
 ### O que há de novo nesta versão:
 
-1.  **Identidade Oficial**: O aplicativo foi renomeado para **Camara Cidadã** e agora utiliza o identificador oficial `com.bessasistema.camaracidada`, garantindo uma presença profissional na Google Play Store.
+1.  **Identidade Oficial**: O aplicativo foi renomeado para **Capivara Aventureira** e agora utiliza o identificador oficial `com.bessasistema.capivaraaventureira`, garantindo uma presença profissional na Google Play Store.
 2.  **Interface de Tela Cheia (Edge-to-Edge)**: Implementamos suporte para telas modernas, garantindo que o conteúdo não seja sobreposto pela barra de status ou de navegação.
 3.  **Carregamento Otimizado**:
     *   Substituímos os ativos de imagem pelo formato **WebP**, o que reduziu drasticamente o tamanho do aplicativo e acelerou o carregamento inicial.

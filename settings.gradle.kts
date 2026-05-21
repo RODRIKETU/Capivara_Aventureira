@@ -16,5 +16,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Camara"
+rootProject.name = "Capivara Aventureira"
 include(":app")
